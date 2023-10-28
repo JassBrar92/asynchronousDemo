@@ -2,7 +2,7 @@ console.log("before");
 getUserInfo(1,function(user){
   console.log('User',user);
   console.log('user respostries');
-  getUserRespostry(user.username,function(repos){
+  getUserRespostry(user.name,function(repos){
    console.log(repos);
   })
 });
@@ -16,8 +16,8 @@ function getUserInfo(id,callback){
   },2000);
 }
 function getUserRespostry(username,callback){
+  console.log(username);
   setTimeout(() => {
     callback(['repo1','repo2','repo3']);
   }, 2000);
-
 }
