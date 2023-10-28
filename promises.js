@@ -8,10 +8,24 @@ console.log("before");
   })
 });*/
 //replacing callback function  with promise  function
-getUserInfo(1)
+/*getUserInfo(1)
 .then(user=>getUserRespostry(user.name))
 .then(repos=>console.log(repos))
-.catch(err=>console.log("Error",err.message));
+.catch(err=>console.log("Error",err.message));*/
+
+// asyn and await approach
+async function displayRepos(){
+  try{
+    const user=await getUserInfo(1);
+    const repos=await getUserRespostry(user.name);
+    console.log(repos);
+  }
+  catch(err)
+  {
+    console.log(err.message);
+  }
+  }
+  displayRepos();
 console.log("after");
 // asynchronous code
 function getUserInfo(id){
@@ -25,7 +39,8 @@ function getUserInfo(id){
 function getUserRespostry(username){
   return new Promise((resolve,reject)=>{
     setTimeout(() => {
-      resolve(['repo1','repo2','repo3']);
+      //resolve(['repo1','repo2','repo3']);
+      reject(new Error("repos is not found"));
     }, 2000);
   });
 }
